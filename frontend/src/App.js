@@ -1,10 +1,12 @@
 import './App.css';
-import Product from './Pages/Product';
+import { MainRoutes } from './Components/MainRoutes';
+// import Product from './Pages/Product';
 
 function App() {
   return (
     <div className="App">
-      <Product/>
+      {/* <Product/> */}
+      <MainRoutes/>
     </div>
   );
 }
