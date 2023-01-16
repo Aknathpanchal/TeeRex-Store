@@ -1,29 +1,21 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import Filters from '../Components/Filters';
-// import Navbar from '../Components/Navbar';
-import SearchBar from '../Components/SearchBar';
-import { getDataAPI } from '../Redux/actions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Filters from "../Components/Filters";
+import SearchBar from "../Components/SearchBar";
+import { getDataAPI } from "../Redux/actions";
 import { ProductPage } from "./ProductPage";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { data, filterData ,getData} = useSelector((state) => state.data);
-
-  // const { fetchedData, filterData, loading, error } = useSelector(
-  //   (store) => store.productReducer
-  // );
-  console.log("STORE DATA",data, filterData)
+  const { data, filterData, getData } = useSelector((state) => state.data);
+  console.log("STORE DATA", data, filterData);
   const mappingData = filterData.length > 0 ? filterData : data;
 
-
-
-  
   useEffect(() => {
     if (data.length === 0) {
       dispatch(getDataAPI());
     }
-  }, [dispatch,data]);
+  }, [dispatch, data]);
 
   const handleAddToCart = (elem) => {
     console.log("ADDDDDDDDD", elem.id);
@@ -33,27 +25,28 @@ const Home = () => {
   return (
     <div>
       {/* <Navbar/> */}
-      <SearchBar/>
-    <div className='Container'>
-      <div><Filters/></div>
-    
-    <div className='products_data'>
-       {getData.loading && <div>Loading...</div>}
-      {getData.error && <div>Error...</div>}
-      {!getData.loading && 
-        mappingData?.map((elem) => (
-          <ProductPage
-            elem={elem}
-            qty={elem.quantity}
-            handleAddToCart={handleAddToCart}
-            key={elem.id}
-          />
-        ))
-        }
-    </div>
-    </div>
+      <SearchBar />
+      <div className="Container">
+        <div>
+          <Filters />
+        </div>
+
+        <div className="products_data">
+          {getData.loading && <div>Loading...</div>}
+          {getData.error && <div>Error...</div>}
+          {!getData.loading &&
+            mappingData?.map((elem) => (
+              <ProductPage
+                elem={elem}
+                qty={elem.quantity}
+                handleAddToCart={handleAddToCart}
+                key={elem.id}
+              />
+            ))}
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default Home
+export default Home;

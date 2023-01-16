@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <div>
-        <div className="navbar">
+      <div className="navbar">
         <div>
           <p>TeeRex Store</p>
         </div>
@@ -24,7 +24,7 @@ function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
